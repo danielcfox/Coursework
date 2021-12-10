@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+		<title>Normal Distribution: An Introductory Guide to PDF and CDF &#8211; Integrated Machine Learning and Artificial Intelligence</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Integrated Machine Learning and Artificial Intelligence &raquo; Feed" href="https://integratedmlai.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Integrated Machine Learning and Artificial Intelligence &raquo; Comments Feed" href="https://integratedmlai.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Integrated Machine Learning and Artificial Intelligence &raquo; Normal Distribution: An Introductory Guide to PDF and CDF Comments Feed" href="https://integratedmlai.com/normal-distribution-an-introductory-guide-to-pdf-and-cdf/feed/" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v7.14.0 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<!-- Note: MonsterInsights is not currently configured on this site. The site owner needs to authenticate with Google Analytics in the MonsterInsights settings panel. -->
+<!-- No UA code set -->
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/integratedmlai.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.7.2"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://integratedmlai.com/wp-includes/css/dist/block-library/style.min.css?ver=5.7.2' type='text/css' media='all' />
+<link rel='stylesheet' id='monsterinsights-popular-posts-style-css'  href='https://integratedmlai.com/wp-content/plugins/google-analytics-for-wordpress/assets/css/frontend.min.css?ver=7.14.0' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='https://integratedmlai.com/wp-content/themes/hestia/assets/bootstrap/css/bootstrap.min.css?ver=1.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='hestia-font-sizes-css'  href='https://integratedmlai.com/wp-content/themes/hestia/assets/css/font-sizes.min.css?ver=3.0.8' type='text/css' media='all' />
+<link rel='stylesheet' id='hestia_style-css'  href='https://integratedmlai.com/wp-content/themes/hestia/style.min.css?ver=3.0.8' type='text/css' media='all' />
+<style id='hestia_style-inline-css' type='text/css'>
+.hestia-top-bar, .hestia-top-bar .widget.widget_shopping_cart .cart_list {
+			background-color: #363537
+		}
+		.hestia-top-bar .widget .label-floating input[type=search]:-webkit-autofill {
+			-webkit-box-shadow: inset 0 0 0px 9999px #363537
+		}.hestia-top-bar, .hestia-top-bar .widget .label-floating input[type=search], .hestia-top-bar .widget.widget_search form.form-group:before, .hestia-top-bar .widget.widget_product_search form.form-group:before, .hestia-top-bar .widget.widget_shopping_cart:before {
+			color: #ffffff
+		} 
+		.hestia-top-bar .widget .label-floating input[type=search]{
+			-webkit-text-fill-color:#ffffff !important 
+		}
+		.hestia-top-bar div.widget.widget_shopping_cart:before, .hestia-top-bar .widget.widget_product_search form.form-group:before, .hestia-top-bar .widget.widget_search form.form-group:before{
+			background-color: #ffffff
+		}.hestia-top-bar a, .hestia-top-bar .top-bar-nav li a {
+			color: #ffffff
+		}
+		.hestia-top-bar ul li a[href*="mailto:"]:before, .hestia-top-bar ul li a[href*="tel:"]:before{
+			background-color: #ffffff
+		}
+		.hestia-top-bar a:hover, .hestia-top-bar .top-bar-nav li a:hover {
+			color: #eeeeee
+		}
+		.hestia-top-bar ul li:hover a[href*="mailto:"]:before, .hestia-top-bar ul li:hover a[href*="tel:"]:before{
+			background-color: #eeeeee
+		}
+		
+	
+		a, 
+		.navbar .dropdown-menu li:hover > a,
+		.navbar .dropdown-menu li:focus > a,
+		.navbar .dropdown-menu li:active > a,
+		.navbar .navbar-nav > li .dropdown-menu li:hover > a,
+		body:not(.home) .navbar-default .navbar-nav > .active:not(.btn) > a,
+		body:not(.home) .navbar-default .navbar-nav > .active:not(.btn) > a:hover,
+		body:not(.home) .navbar-default .navbar-nav > .active:not(.btn) > a:focus,
+		a:hover, 
+		.card-blog a.moretag:hover, 
+		.card-blog a.more-link:hover, 
+		.widget a:hover,
+		.has-text-color.has-accent-color,
+		p.has-text-color a {
+		    color:#e91e63;
+		}
+		
+		.svg-text-color{
+			fill:#e91e63;
+		}
+		
+		.pagination span.current, .pagination span.current:focus, .pagination span.current:hover {
+			border-color:#e91e63
+		}
+		
+		button,
+		button:hover,
+		.woocommerce .track_order button[type="submit"],
+		.woocommerce .track_order button[type="submit"]:hover,
+		div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,
+		div.wpforms-container .wpforms-form button[type=submit].wpforms-submit:hover,
+		input[type="button"],
+		input[type="button"]:hover,
+		input[type="submit"],
+		input[type="submit"]:hover,
+		input#searchsubmit, 
+		.pagination span.current, 
+		.pagination span.current:focus, 
+		.pagination span.current:hover,
+		.btn.btn-primary,
+		.btn.btn-primary:link,
+		.btn.btn-primary:hover, 
+		.btn.btn-primary:focus, 
+		.btn.btn-primary:active, 
+		.btn.btn-primary.active, 
+		.btn.btn-primary.active:focus, 
+		.btn.btn-primary.active:hover,
+		.btn.btn-primary:active:hover, 
+		.btn.btn-primary:active:focus, 
+		.btn.btn-primary:active:hover,
+		.hestia-sidebar-open.btn.btn-rose,
+		.hestia-sidebar-close.btn.btn-rose,
+		.hestia-sidebar-open.btn.btn-rose:hover,
+		.hestia-sidebar-close.btn.btn-rose:hover,
+		.hestia-sidebar-open.btn.btn-rose:focus,
+		.hestia-sidebar-close.btn.btn-rose:focus,
+		.label.label-primary,
+		.hestia-work .portfolio-item:nth-child(6n+1) .label,
+		.nav-cart .nav-cart-content .widget .buttons .button,
+		.has-accent-background-color[class*="has-background"] {
+		    background-color: #e91e63;
+		}
+		
+		@media (max-width: 768px) { 
+	
+			.navbar-default .navbar-nav>li>a:hover,
+			.navbar-default .navbar-nav>li>a:focus,
+			.navbar .navbar-nav .dropdown .dropdown-menu li a:hover,
+			.navbar .navbar-nav .dropdown .dropdown-menu li a:focus,
+			.navbar button.navbar-toggle:hover,
+			.navbar .navbar-nav li:hover > a i {
+			    color: #e91e63;
+			}
+		}
+		
+		body:not(.woocommerce-page) button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close),
+		body:not(.woocommerce-page) .button:not([class^="fl-"]):not(hestia-scroll-to-top):not(.navbar-toggle):not(.add_to_cart_button),
+		div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,
+		input[type="submit"], 
+		input[type="button"], 
+		.btn.btn-primary,
+		.widget_product_search button[type="submit"],
+		.hestia-sidebar-open.btn.btn-rose,
+		.hestia-sidebar-close.btn.btn-rose,
+		.everest-forms button[type=submit].everest-forms-submit-button {
+		    -webkit-box-shadow: 0 2px 2px 0 rgba(233,30,99,0.14),0 3px 1px -2px rgba(233,30,99,0.2),0 1px 5px 0 rgba(233,30,99,0.12);
+		    box-shadow: 0 2px 2px 0 rgba(233,30,99,0.14),0 3px 1px -2px rgba(233,30,99,0.2),0 1px 5px 0 rgba(233,30,99,0.12);
+		}
+		
+		.card .header-primary, .card .content-primary,
+		.everest-forms button[type=submit].everest-forms-submit-button {
+		    background: #e91e63;
+		}
+		
+		body:not(.woocommerce-page) .button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.add_to_cart_button):hover,
+		body:not(.woocommerce-page) button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close):hover,
+		div.wpforms-container .wpforms-form button[type=submit].wpforms-submit:hover,
+		input[type="submit"]:hover,
+		input[type="button"]:hover,
+		input#searchsubmit:hover, 
+		.widget_product_search button[type="submit"]:hover,
+		.pagination span.current, 
+		.btn.btn-primary:hover, 
+		.btn.btn-primary:focus, 
+		.btn.btn-primary:active, 
+		.btn.btn-primary.active, 
+		.btn.btn-primary:active:focus, 
+		.btn.btn-primary:active:hover, 
+		.hestia-sidebar-open.btn.btn-rose:hover,
+		.hestia-sidebar-close.btn.btn-rose:hover,
+		.pagination span.current:hover,
+		.everest-forms button[type=submit].everest-forms-submit-button:hover,
+ 		.everest-forms button[type=submit].everest-forms-submit-button:focus,
+ 		.everest-forms button[type=submit].everest-forms-submit-button:active {
+			-webkit-box-shadow: 0 14px 26px -12px rgba(233,30,99,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(233,30,99,0.2);
+		    box-shadow: 0 14px 26px -12px rgba(233,30,99,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(233,30,99,0.2);
+			color: #fff;
+		}
+		
+		.form-group.is-focused .form-control {
+			background-image: -webkit-gradient(linear,left top, left bottom,from(#e91e63),to(#e91e63)),-webkit-gradient(linear,left top, left bottom,from(#d2d2d2),to(#d2d2d2));
+			background-image: -webkit-linear-gradient(linear,left top, left bottom,from(#e91e63),to(#e91e63)),-webkit-linear-gradient(linear,left top, left bottom,from(#d2d2d2),to(#d2d2d2));
+			background-image: linear-gradient(linear,left top, left bottom,from(#e91e63),to(#e91e63)),linear-gradient(linear,left top, left bottom,from(#d2d2d2),to(#d2d2d2));
+		}
+		
+		.navbar:not(.navbar-transparent) li:not(.btn):hover > a,
+		.navbar li.on-section:not(.btn) > a, 
+		.navbar.full-screen-menu.navbar-transparent li:not(.btn):hover > a,
+		.navbar.full-screen-menu .navbar-toggle:hover,
+		.navbar:not(.navbar-transparent) .nav-cart:hover, 
+		.navbar:not(.navbar-transparent) .hestia-toggle-search:hover {
+				color:#e91e63
+		}
+		
+			.header-filter-gradient { 
+				background: linear-gradient(45deg, rgba(168,29,132,1) 0%, rgb(234,57,111) 100%); 
+			}
+			.has-text-color.has-header-gradient-color { color: #a81d84; }
+			.has-header-gradient-background-color[class*="has-background"] { background-color: #a81d84; }
+			
+		.has-text-color.has-background-color-color { color: #E5E5E5; }
+		.has-background-color-background-color[class*="has-background"] { background-color: #E5E5E5; }
+		
+.btn.btn-primary:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item), input[type="submit"]:not(.search-submit), body:not(.woocommerce-account) .woocommerce .button.woocommerce-Button, .woocommerce .product button.button, .woocommerce .product button.button.alt, .woocommerce .product #respond input#submit, .woocommerce-cart .blog-post .woocommerce .cart-collaterals .cart_totals .checkout-button, .woocommerce-checkout #payment #place_order, .woocommerce-account.woocommerce-page button.button, .woocommerce .track_order button[type="submit"], .nav-cart .nav-cart-content .widget .buttons .button, .woocommerce a.button.wc-backward, body.woocommerce .wccm-catalog-item a.button, body.woocommerce a.wccm-button.button, form.woocommerce-form-coupon button.button, div.wpforms-container .wpforms-form button[type=submit].wpforms-submit, div.woocommerce a.button.alt, div.woocommerce table.my_account_orders .button, .btn.colored-button, .btn.btn-left, .btn.btn-right, .btn:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item):not(.hestia-sidebar-open):not(.hestia-sidebar-close){ padding-top:15px;  padding-bottom:15px;  padding-left:33px;  padding-right:33px; }
+.btn.btn-primary:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item), input[type="submit"]:not(.search-submit), body:not(.woocommerce-account) .woocommerce .button.woocommerce-Button, .woocommerce .product button.button, .woocommerce .product button.button.alt, .woocommerce .product #respond input#submit, .woocommerce-cart .blog-post .woocommerce .cart-collaterals .cart_totals .checkout-button, .woocommerce-checkout #payment #place_order, .woocommerce-account.woocommerce-page button.button, .woocommerce .track_order button[type="submit"], .nav-cart .nav-cart-content .widget .buttons .button, .woocommerce a.button.wc-backward, body.woocommerce .wccm-catalog-item a.button, body.woocommerce a.wccm-button.button, form.woocommerce-form-coupon button.button, div.wpforms-container .wpforms-form button[type=submit].wpforms-submit, div.woocommerce a.button.alt, div.woocommerce table.my_account_orders .button, input[type="submit"].search-submit, .hestia-view-cart-wrapper .added_to_cart.wc-forward, .woocommerce-product-search button, .woocommerce-cart .actions .button, #secondary div[id^=woocommerce_price_filter] .button, .woocommerce div[id^=woocommerce_widget_cart].widget .buttons .button, .searchform input[type=submit], .searchform button, .search-form:not(.media-toolbar-primary) input[type=submit], .search-form:not(.media-toolbar-primary) button, .woocommerce-product-search input[type=submit], .btn.colored-button, .btn.btn-left, .btn.btn-right, .btn:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item):not(.hestia-sidebar-open):not(.hestia-sidebar-close){border-radius:3px;}
+@media (min-width: 769px){
+			.page-header.header-small .hestia-title,
+			.page-header.header-small .title,
+			h1.hestia-title.title-in-content,
+			.main article.section .has-title-font-size {
+				font-size: 42px;
+			}}
+</style>
+<link rel='stylesheet' id='hestia_fonts-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C500%2C700%7CRoboto+Slab%3A400%2C700&#038;subset=latin%2Clatin-ext&#038;ver=3.0.8' type='text/css' media='all' />
+<script type='text/javascript' src='https://integratedmlai.com/wp-includes/js/jquery/jquery.min.js?ver=3.5.1' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://integratedmlai.com/wp-json/" /><link rel="alternate" type="application/json" href="https://integratedmlai.com/wp-json/wp/v2/posts/1787" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://integratedmlai.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://integratedmlai.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.7.2" />
+<link rel="canonical" href="https://integratedmlai.com/normal-distribution-an-introductory-guide-to-pdf-and-cdf/" />
+<link rel='shortlink' href='https://integratedmlai.com/?p=1787' />
+<link rel="alternate" type="application/json+oembed" href="https://integratedmlai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fintegratedmlai.com%2Fnormal-distribution-an-introductory-guide-to-pdf-and-cdf%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://integratedmlai.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fintegratedmlai.com%2Fnormal-distribution-an-introductory-guide-to-pdf-and-cdf%2F&#038;format=xml" />
+<link rel="icon" href="https://integratedmlai.com/wp-content/uploads/2018/11/cropped-I-MLAI_512x512-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://integratedmlai.com/wp-content/uploads/2018/11/cropped-I-MLAI_512x512-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://integratedmlai.com/wp-content/uploads/2018/11/cropped-I-MLAI_512x512-180x180.png" />
+<meta name="msapplication-TileImage" content="https://integratedmlai.com/wp-content/uploads/2018/11/cropped-I-MLAI_512x512-270x270.png" />
+</head>
+
+<body class="post-template-default single single-post postid-1787 single-format-standard wp-custom-logo blog-post header-layout-no-content">
+		<div class="wrapper post-1787 post type-post status-publish format-standard has-post-thumbnail hentry category-basic category-statistics tag-basics tag-datascience tag-normal-distribution tag-probability tag-statistics no-content ">
+		<header class="header ">
+			<div style="display: none"></div>		<nav class="navbar navbar-default navbar-fixed-top  hestia_left navbar-not-transparent">
+						<div class="container">
+						<div class="navbar-header">
+			<div class="title-logo-wrapper">
+				<a class="navbar-brand" href="https://integratedmlai.com/"
+						title="Integrated Machine Learning and Artificial Intelligence">
+					<img  src="https://integratedmlai.com/wp-content/uploads/2018/11/IMLAI_150x100.png" alt="Integrated Machine Learning and Artificial Intelligence"></a>
+			</div>
+								</div>
+					</div>
+					</nav>
+				</header>
+<div id="primary" class="boxed-layout-header page-header header-small" data-parallax="active" ><div class="header-filter" style="background-image: url(https://integratedmlai.com/wp-content/uploads/2018/11/cropped-IMLAI_Blog_Inv.png);"></div></div>
+<div class="main  main-raised ">
+	<div class="blog-post blog-post-wrapper">
+		<div class="container">
+			<article id="post-1787" class="section section-text">
+	<div class="row">
+				<div class="col-md-8 single-post-container" data-layout="sidebar-right">
+
+			<div class="single-post-wrap entry-content">	<div class="row"><div class="col-md-12"><h1 class="hestia-title title-in-content entry-title">Normal Distribution: An Introductory Guide to PDF and CDF</h1><p class="author meta-in-content">Published by <a href="https://integratedmlai.com/author/teenamary/" class="vcard author"><strong class="fn">Teena Mary</strong></a> on <time class="entry-date published" datetime="2020-09-01T05:59:06+00:00" content="2020-09-01">September 1, 2020</time><time class="updated hestia-hidden" datetime="2020-09-03T03:30:26+00:00">September 1, 2020</time></p></div></div>
+<p class="has-text-align-right"><em>Edited by Thom Ives</em></p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" width="650" height="211" src="https://integratedmlai.com/wp-content/uploads/2020/09/Normal_Distribution_Post_Logo.png" alt="" class="wp-image-2098" srcset="https://integratedmlai.com/wp-content/uploads/2020/09/Normal_Distribution_Post_Logo.png 650w, https://integratedmlai.com/wp-content/uploads/2020/09/Normal_Distribution_Post_Logo-300x97.png 300w" sizes="(max-width: 650px) 100vw, 650px" /></figure>
+
+
+
+<p>Find the Code on <a href="https://github.com/IntegratedMLAI/NormalDistributionIntro">GitHub</a></p>
+
+
+
+<p>Data is the new oil and new gold. Sorta. There is a lot of hype around data science. It is essential, or at least very helpful, to have a good foundation in statistical principles before diving into this field. </p>
+
+
+
+<p>Data can tell us amazing stories if we ask it the right questions. In order to ask the right questions, we need to ask some introductory questions, just like you might do when meeting a new person. Data is often characterized by the types of distributions that it contains. Knowing the kinds of distributions that each variable in your data fits is essential to determining what additional questions we should ask (i.e what further analyses we should perform to learn more). </p>
+
+
+
+<p>When it comes to distributions of data, in the field of statistics or data science, the most common one is the normal distribution, and in this post, we will seek to thoroughly introduce it and understand it.</p>
+
+
+
+<h2>Contents</h2>
+
+
+
+<ol><li><strong>Introduction</strong></li><li><strong>History of The Normal Distribution</strong></li><li><strong>PDF and CDF of The Normal Distribution</strong></li><li><strong>Calculating the Probability of The Normal Distribution using Python</strong></li><li><strong>References</strong></li></ol>
+
+
+
+<h2>1. Introduction</h2>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="512" src="https://integratedmlai.com/wp-content/uploads/2020/07/1_IdGgdrY_n_9_YfkaCh-dag-1024x512-1.png" alt="" class="wp-image-1863" srcset="https://integratedmlai.com/wp-content/uploads/2020/07/1_IdGgdrY_n_9_YfkaCh-dag-1024x512-1.png 1024w, https://integratedmlai.com/wp-content/uploads/2020/07/1_IdGgdrY_n_9_YfkaCh-dag-1024x512-1-300x150.png 300w, https://integratedmlai.com/wp-content/uploads/2020/07/1_IdGgdrY_n_9_YfkaCh-dag-1024x512-1-768x384.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>Figure 1.1: An Ideal Normal Distribution, Photo by: <a href="https://towardsdatascience.com/understanding-the-68-95-99-7-rule-for-a-normal-distribution-b7b7cbf760c2" data-type="URL" data-id="https://towardsdatascience.com/understanding-the-68-95-99-7-rule-for-a-normal-distribution-b7b7cbf760c2" target="_blank" rel="noreferrer noopener">Medium</a></figcaption></figure>
+
+
+
+<p>A normal distribution (<em>aka a Gaussian distribution</em>) is a continuous probability distribution for real-valued variables. Whoa! That&#8217;s a tightly packed group of mathematical words. I understand! Trust me, it will make more sense as we explain it and use it. It is a symmetric distribution where most of the observations cluster around a central peak, which we call the mean. When collecting data, we expect to see this value more than any others when our data is normally distributed (i.e. this value will have the highest probability). Data values other than the mean will be less probable. The further the other values are from the mean the less probable they are. These other data values will taper off to lower and lower probabilities equally in both directions the farther they are from the mean value.</p>
+
+
+
+<p>This distribution is very common in real world processes all around us. Many natural phenomena can be described very well with this distribution. The height of male students, the height of female students, IQ scores, etc. All of these and more follow a normal distribution. However, please keep in mind that data is NOT always normally distributed. Future posts will cover other types of probability distributions. We are going over the normal distribution first, because it is a very common and important distribution, and it is frequently used in many data science activities.</p>
+
+
+
+<p>Let&#8217;s go a bit deeper into the mathematics used with the normal distribution. Although we are going deeper, I think the equations below will help you understand the normal distribution much better. More importantly, these additional mathematics will help you make better use of the normal distribution in your data science work.</p>
+
+
+
+<h2>2. History of  the Normal Distribution</h2>
+
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter size-large"><img loading="lazy" width="220" height="280" src="https://integratedmlai.com/wp-content/uploads/2020/09/220px-Abraham_de_moivre.jpg" alt="" class="wp-image-2099"/><figcaption>Figure 2.1 : Abraham de Moivre, Photo from:<a href="https://en.wikipedia.org/wiki/Abraham_de_Moivre"> Wikipedia</a></figcaption></figure></div>
+
+
+
+<p>The discovery of the normal distribution was first attributed to Abraham de Moivre, as an approximation of a binomial distribution. Abraham de Moivre was an 18th CE French mathematician and was also a consultant to many gamblers. We know that the binomial distribution can be used to model questions such as &#8220;If a fair coin is tossed 200 times, what is the probability of getting more than 80 heads?&#8221; <em>To know more about the binomial distribution, see this</em><a href="https://www.statisticshowto.com/probability-and-statistics/binomial-theorem/binomial-distribution-formula/#:~:text=Worked%20Examples-,What%20is%20a%20Binomial%20Distribution%3F,means%20two%2C%20or%20twice)."><em> link</em></a><em>.</em> In order to solve such problems, de Moivre had to sum up all the probabilities of getting 81 heads, 82 heads up to 200 heads. In the process, he noticed that as the number of occurrences increased, the shape of the binomial distribution started becoming smooth.</p>
+
+
+
+<p>Let us see how this is possible. We can plot the binomial distribution graphs of different occurrences of events using the following code, which is in the colab notebook named <strong>Calculating Probabilities using Normal Distributions in Python</strong> on the <a href="https://github.com/IntegratedMLAI/NormalDistributionIntro">GitHub repo</a> for this post. </p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 2.1</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+import scipy
+from scipy.stats import binom 
+import matplotlib.pyplot as plt 
+
+# setting the values of n and p
+n = 8
+p = 0.5    # Here p = 0.5 as it is a binomial distribution with two outcomes(equal chances of success and failure)
+
+# defining list of r values 
+r_values = list(range(n + 1)) 
+
+# list of pmf values 
+dist = [binom.pmf(r, n, p) for r in r_values ] 
+
+# plotting the graph  
+plt.title(label=&quot;Binomial Distribution of  Occurrences&quot;, 
+          fontsize=15, color=&quot;red&quot;)
+plt.bar(r_values, dist)
+plt.xlabel(&quot;Values&quot;, fontsize=13)
+plt.ylabel(&quot;Probabilities&quot;, fontsize=13)
+plt.show()
+</pre>
+
+
+<p>Here, when we use different values of <strong>n</strong>, we obtain the graphs shown below:</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" width="714" height="972" src="https://integratedmlai.com/wp-content/uploads/2020/09/Moivre_Experiment.png" alt="" class="wp-image-2100" srcset="https://integratedmlai.com/wp-content/uploads/2020/09/Moivre_Experiment.png 714w, https://integratedmlai.com/wp-content/uploads/2020/09/Moivre_Experiment-220x300.png 220w" sizes="(max-width: 714px) 100vw, 714px" /><figcaption>Figure 2.2 : Binomial Plots tending to Normal Distribution</figcaption></figure>
+
+
+
+<p>De Moivre hypothesized that if he could formulate an equation to model this curve, then such distributions could be better predicted. He introduced the concept of the normal distribution in the second edition of <em>&#8216;</em><a href="https://en.wikipedia.org/wiki/The_Doctrine_of_Chances"><strong><em>The Doctrine of Chances</em></strong></a><em>&#8216;</em> in 1738. Learn more on Abraham de Moivre <a href="https://en.wikipedia.org/wiki/Abraham_de_Moivre">here</a>.</p>
+
+
+
+<p>The normal distribution is very important because many of the phenomena in nature and measurements approximately follow the symmetric normal distribution curve.</p>
+
+
+
+<blockquote class="wp-block-quote"><p>One of the first applications of the normal distribution was to the analysis of errors of measurement made in astronomical observations, errors that occurred because of imperfect instruments and imperfect observers. Galileo in the 17th century noted that these errors were symmetric and that small errors occurred more frequently than large errors. This led to several hypothesized distributions of errors, but it was not until the early 19th century that it was discovered that these errors followed a normal distribution.</p><cite><a href="http://onlinestatbook.com/2/normal_distribution/history_normal.html">Online Stat Book</a></cite></blockquote>
+
+
+
+<h3>Enter Gauss and LaPlace</h3>
+
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter"><img src="https://lh4.googleusercontent.com/98tsKKQh8OuS3wCy05IfE8KebG8HRQRPPyPCdhAruCY7H7PYPW1N7LYO1OKsffTz4xqp-Ugj1FCX0Of56fiFDpf-CTSXQldCzFDROqZoDOirxBz_iPM4mRegiTTzjkGRKcp8BkFE" alt=""/><figcaption>Figure 2.3 : Johann Carl Friedrich Gauss, Photo from <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Wikipedia</a></figcaption></figure></div>
+
+
+
+<p>In 1823, <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Johann Carl Friedrich Gauss</a> published <strong><em>Theoria combinationis observationum erroribus minimus obnoxiae</em></strong>, which is the theory of observable errors. In the third section of <em>Theoria Motus</em>, Gauss introduced the famous law of the normal distribution to analyze astronomical measurement data. Gauss made a series of general assumptions about observations and observable errors and supplemented them with a purely mathematical assumption. Then, in a very simple and elegant way, he was able to fit the curve of collected data from his experiments with an equation. The equation that reproduces the shape of this data was given the name &#8216;Gaussian Distribution&#8217;. The graph resembles a bell and is oftentimes called a bell-shaped curve.</p>
+
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter"><img src="https://lh6.googleusercontent.com/Ejpz0Z0eq_Ic-mbIdpvibReYMwGLLx48TjDfXaUZw5wPDVUXdHsc4hXN2gZh5jpThK0jfQWvcvqIi3PYUmyypnHrNrxY6Pd2gfb4UYkSyYfHw0CVjnrGkXHyzUsta4n2Fu7SPw3J" alt=""/><figcaption>Figure 2.4 : Pierre-Simon Laplace, Photo from: <a href="https://en.wikipedia.org/wiki/Pierre-Simon_Laplace">Wikipedia</a></figcaption></figure></div>
+
+
+
+<p><a href="https://en.wikipedia.org/wiki/Pierre-Simon_Laplace">Laplace</a> (23 March 1749 – 5 March 1827) was the french mathematician who discovered the famous Central Limit Theorem (which we will be discussing more in a later post). He observed that, even if a population does not follow a normal distribution, as the number of the samples taken increases, the distribution of the sample means tends to be a normal distribution. (We saw an example of this in the case of a binomial distribution). So now, let us look deeply into all the equations these great mathematicians developed to fit the normal distribution and understand how they can be applied to real life situations.</p>
+
+
+
+<h2><strong>3. PDF and CDF of The Normal Distribution</strong></h2>
+
+
+
+<p>The probability density function (PDF) and cumulative distribution function (CDF) help us determine probabilities and ranges of probabilities when data follows a normal distribution. The CDF is the integration, from left to right, of the PDF. Using these two normal distribution functions, we can calculate different types of probability estimates from our normally distributed data.</p>
+
+
+
+<h3><strong>3.1 : Probability Density Function (PDF)</strong></h3>
+
+
+
+<blockquote class="wp-block-quote"><p>The probability density function (PDF) is a statistical expression that defines a&nbsp;probability distribution&nbsp;(the likelihood of an outcome) for a discrete&nbsp;random variable as opposed to a continuous random variable. When the PDF is graphically portrayed, the area under the curve will indicate the interval in which the variable will fall.</p><cite><a href="https://www.investopedia.com/terms/p/pdf.asp" data-type="URL" data-id="https://www.investopedia.com/terms/p/pdf.asp" target="_blank" rel="noreferrer noopener">Investopedia</a></cite></blockquote>
+
+
+
+<p>A continuous random variable X is said to follow the normal distribution if it&#8217;s probability density function (PDF) is given by:</p>
+
+
+
+<span class="wp-katex-eq katex-display" data-display="true">\Large \tag*{Equation 3.1} f(x; \mu, σ) = \frac{1}{\sqrt{2 \pi \cdot \sigma^2}} \cdot e^{- \frac{1}{2} \cdot {\lparen \frac{x - \mu}{\sigma} \rparen}^2} </span>
+
+
+
+<p>The variable µ is the mean of the data values. There are two types of means that we can use: 1) the population mean µ, and 2) the sample mean x̅. These are shown in equations 3.2. The population mean is the mean for ALL data for a specific variable. If you wanted to know the average height of 1<sup>st</sup> graders in a specific elementary school, collecting the population mean is not a problem. However, it is NOT always possible to get all the values of a complete population (e.g. the height of all Ponderosa Pine trees in the world in the summer of 2020). When we cannot obtain the population mean, we must rely on the sample mean. How can we make sure that the sample mean is representative of the population mean? We will address this i greater detail in future posts. For now, it&#8217;s best to say that we want our sample to be as large and as unbiased as possible. </p>
+
+
+
+<span class="wp-katex-eq katex-display" data-display="true">\tag*{Equation 3.2.a} \mu = \frac{1}{N}{\sum_{i=1}^N x_i} </span>
+
+
+
+<span class="wp-katex-eq katex-display" data-display="true">\tag*{Equation 3.2.b} \bar x = \frac{1}{n}{\sum_{i=1}^n x_i} </span>
+
+
+
+<p>Once we have a mean value, we can also calculate σ, which is the <em>standard deviation</em> of our data from the mean value. I like to think of the standard deviation as the &#8220;<em>average deviation</em>&#8221; from the <em>mean </em>value of the data. The standard deviation is the way we communicate to each other how &#8220;spread out&#8221; the data is &#8211; how much it &#8220;<em>deviates</em>&#8221; from the mean value. Both µ and σ are called <em>parameters </em>of the normal distribution.</p>
+
+
+
+<p>For the same reasons described above with the population and sample means, we sometimes have a standard deviation for the population σ, but oftentimes we must rely on a <em>sample </em>standard deviation <em>s</em>. Calculations for both of these standard deviations are shown in equations 3.3.</p>
+
+
+
+<span class="wp-katex-eq katex-display" data-display="true">\tag*{Equation 3.3.a} σ=\sqrt{\frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2} </span>
+
+
+
+<span class="wp-katex-eq katex-display" data-display="true">\tag*{Equation 3.3.b} s=\sqrt{\frac{1}{n-1}\sum_{i=1}^n (x_i - \bar x)^2} </span>
+
+
+
+<p class="has-medium-font-size"><strong>Why do we divide sample variance by <em>n-1</em> and not <em>n</em></strong>?</p>
+
+
+
+<p>The metrics of a population are called <em>parameters</em> and metrics of a sample are called <em>statistics</em>. The population variance is a <em>parameter</em> of the population and the sample variance is a <em>statistic</em> of the sample. The sample variance can be considered as an <em>unbiased</em> estimator of variance. What does <em>unbiased</em> mean? </p>
+
+
+
+<blockquote class="wp-block-quote"><p>In&nbsp;<strong>statistics</strong>, the&nbsp;<strong>bias</strong>&nbsp;(or&nbsp;<strong>bias</strong>&nbsp;function) of an estimator&nbsp;<strong>is the</strong>&nbsp;difference between this estimator&#8217;s expected value and the true value of the parameter being estimated. An estimator or decision rule with zero&nbsp;<strong>bias</strong>&nbsp;is called&nbsp;<strong>unbiased</strong>. In&nbsp;<strong>statistics</strong>, &#8220;<strong>bias</strong>&#8221; is an objective property of an estimator.</p><cite><a href="https://en.wikipedia.org/wiki/Bias_of_an_estimator" data-type="URL" data-id="https://en.wikipedia.org/wiki/Bias_of_an_estimator" target="_blank" rel="noreferrer noopener">Wikipedia</a></cite></blockquote>
+
+
+
+<p>If we are able to list out all possible samples of size n, from a population of size N, we will be able to calculate the sample variance of each sample. The sample variance will be an <em>unbiased</em> estimator of the population variance if the average of all sample variances is equal to the population variance. </p>
+
+
+
+<p>We see that, in the sample variance, each observation is subtracted from the sample mean, which falls in the middle of the observations in the sample, whereas the population mean can be any value. So, the sample mean is just one possible position for the true population mean. And sometimes, the population mean can lie far away from the sample mean (depending on the current sampling). </p>
+
+
+
+<p>The variance is the average of the sum of squares of the difference of the observations from the mean. So, when we use the sample mean as an approximation of the population mean for calculating the sample variance, the numerator (<em>i.e. the sum of the squared distances from the mean</em>) can be small at times. In those cases, we will get smaller sample variances. Hence, when we divide the sample variance by <strong>n</strong>, we underestimate (<em>i.e get a biased value</em>) the population variance. In order to compensate for this, we make the denominator of the sample variance <strong>n-1</strong>, to obtain a larger value. This reduces the bias of the sample variance as an estimator of the population variance.</p>
+
+
+
+<p>So, when we divide the sample variances by <strong>n −1</strong>, the average of the sample variances for all possible samples is equal to the population variance. Thus we say that the sample variance will be an unbiased estimate of the population variance. Refer to this <a rel="noreferrer noopener" href="http://vortex.ihrc.fiu.edu/MET4570/members/Lectures/Lect05/m10divideby_nminus1.pdf" data-type="URL" data-id="http://vortex.ihrc.fiu.edu/MET4570/members/Lectures/Lect05/m10divideby_nminus1.pdf" target="_blank">link</a> for a detailed mathematical example of this theory.</p>
+
+
+
+<p><em>Let&#8217;s understand the use case of the PDF with an example.</em> Let&#8217;s assume that we are working with the heights of kids in the 1<sup>st</sup> grade. We know from experience that such heights, when sampled in significant quantities, are normally distributed. However, we are in learning mode. Let&#8217;s not go out and actually measure the heights of 1<sup>st</sup> graders. Let&#8217;s make some fake data that is normally distributed. How can we do that easily?</p>
+
+
+
+<p>First, we need some reasonable numbers for µ and σ. Has someone already done data sampling work on the heights of 1<sup>st</sup> graders? Yes! Check out <a href="https://study.com/academy/answer/first-grade-children-have-heights-that-are-normally-distributed-about-a-mean-of-37-inches-and-a-standard-deviation-of-2-inches-a-random-sample-of-size-25-is-taken-and-the-mean-is-calculated-find-the-probability-that-the-mean-value-x-bar-will-be-betwee.html#:~:text=Question%3A-,First%20grade%20children%20have%20heights%20that%20are%20normally%20distributed%20about,standard%20deviation%20of%202%20inches.">THIS STUDY</a>. The researchers of that study found µ = 37 inches and σ = 2 inches. Let’s use these parameters and some python code to create some fake data &#8211; a valuable skill to have when learning data science. We can create the PDF of a normal distribution using basic functions in Python. The rest of the code for this post is also in the colab notebook named <strong>Calculating Probabilities using Normal Distributions in Python</strong> in the <a href="https://github.com/IntegratedMLAI/NormalDistributionIntro">GitHub repo</a> developed for this post. The code blocks are in the post and the notebook are in the same order.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.1</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+import math
+
+''' Probability Density Function (PDF) from Scratch '''
+def PDF(x, mean, std_dev):
+    probability = 1.0 / math.sqrt(2 * 3.141592*(std_dev)**2)  # first part of equation
+    probability *= math.exp(-0.5 * ((x - mean)/std_dev)**2)  # multiply first part to second part
+
+
+    return probability
+
+X = []
+
+''' Create Fake Normally Distributed Data with Mean of 37, and Std_Dev of 2 '''
+for x in range(29, 46):
+    y = PDF(x, 37, 2)
+    
+    ''' We want to create fake data by replicating x according to it's probability '''
+    N_vals_at_y = int(round(y * 1001, 0))
+    for i in range(N_vals_at_y):
+      X.append(x)
+
+
+# Finding mean
+mean = round(sum(X)/len(X), 4)
+
+
+# Finding Standard Deviation
+std_dev = 0.0
+N = len(X)
+for x in X:
+  std_dev += (x - mean)**2
+
+std_dev /= N
+std_dev = math.sqrt(std_dev)
+std_dev = round(std_dev, 2)
+
+print(f'We fake measured the heights of {N} 1st graders.')
+print(f’The mean is {mean}’)
+print(f’The standard deviation is {std_dev}’)
+</pre>
+
+
+<p>The output from the above block is </p>
+
+
+
+<pre class="wp-block-code"><code>We fake measured the heights of 1000 1st graders.
+The mean is 37.0
+The standard deviation is 1.99</code></pre>
+
+
+
+<p>So, now we have created our PDF function from scratch without using any modules like NumPy or SciPy. We can get the PDF of a particular value by using the next block of code from our notebook:</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.2</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+x = 39
+print(PDF(x, 37, 2))
+</pre>
+
+
+<p>Here, we find the PDF value corresponding to x= 39. The output of the above block is:</p>
+
+
+<pre class="brush: plain; title: ; notranslate" title="">
+0.12098537484471858
+</pre>
+
+
+<p>We can also <em>generate</em> a PDF of a normal distribution using the python modules NumPy, SciPy, and visualize them with Matplotlib. Before that, let&#8217;s understand the functionalities of each of these modules.&nbsp;</p>
+
+
+
+<p><strong>NumPy</strong> is a Python package that stands for &#8216;Numerical Python&#8217;. This library is mainly used for scientific computing, and it contains powerful n-dimensional array objects and other powerful data structures (e.g. it implements multi-dimensional arrays and matrices). <strong>SciPy</strong> is an open-source Python library and is very helpful in solving scientific and mathematical problems. It is built on NumPy and allows the user to manipulate and visualize data. <strong>Matplotlib</strong> is an amazingly good and flexible plotting and visualization library in Python. Matplotlib is also built on NumPy. Matplotlib provides several plots such as line, bar, scatter, histogram, and more.</p>
+
+
+
+<p>We can generate the PDF of the normal distribution and visualizations of it using these modules. We start with the function <strong>norm.pdf(x, loc, scale)</strong>, where, loc is the variable that specifies the mean and scale specifies the standard deviation. For more details on the function, <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html">click here</a>. </p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.3</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+import scipy
+import numpy as np
+import matplotlib.pyplot as plt 
+from scipy.stats import norm
+
+figure,ax = plt.subplots()
+ 
+X = []
+Y = []
+ 
+for x in np.arange(29, 46, 0.1):
+    X.append(x)
+    y = norm.pdf(x=x, loc=37.0, scale=2)
+    Y.append(y)
+
+ax.set_xlabel('1st Grader Heights')
+ax.set_ylabel('Probabilities of 1st Grader Heights')
+ax.set_title('PDF of 1st Grader Heights, mu = 37, sigma = 2')
+plt.plot(X, Y)
+plt.show()
+</pre>
+
+
+<p>The output of the code above yields the plot shown in figure 3.1.</p>
+
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://integratedmlai.com/wp-content/uploads/2020/08/First_Grader_Heights_PDF.png" alt="" class="wp-image-1947" width="495" height="371" srcset="https://integratedmlai.com/wp-content/uploads/2020/08/First_Grader_Heights_PDF.png 640w, https://integratedmlai.com/wp-content/uploads/2020/08/First_Grader_Heights_PDF-300x225.png 300w" sizes="(max-width: 495px) 100vw, 495px" /><figcaption>Figure 3.1: Probability Distribution of 1st Grader Heights</figcaption></figure></div>
+
+
+
+<p>The heights of the kids are stored as elements <strong>x</strong> inside the vector <strong>X</strong>. If we want the probability for a specific height x = 39&#8243;, we only need to enter that specific value of <strong>x</strong> into the norm.pdf method call as shown in the code lines below, which can be added to the end of the code lines above.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.4</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+x = 39
+p = norm.pdf(x=x, loc=37.0, scale=2)
+print(f'The probability of a 1st grader being &quot;{x}&quot; is {p}.')
+</pre>
+
+
+<p>The python code should run from a command console or a notebook. Adding the above lines to the end of the previous code block the output will be:</p>
+
+
+<pre class="brush: plain; title: ; notranslate" title="">
+The probability of a 1st grader being 39&quot; is 0.12098536225957168.
+</pre>
+
+
+<p>We can see that the output of the PDF function that we created from scratch, as well as the one using the Python modules, return the same value 0.12098536225957168. Please realize that 39&#8243; is like a bucket of all students that are between 39.0&#8243; and 39.99__&#8221;. This may not be clear now, but when we start to use the cumulative distribution function below, it will become more clear.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://integratedmlai.com/wp-content/uploads/2020/08/1_JS-pjg67FWQ5oSjRBg5UAw.png" alt="" class="wp-image-1891" width="366" height="199" srcset="https://integratedmlai.com/wp-content/uploads/2020/08/1_JS-pjg67FWQ5oSjRBg5UAw.png 482w, https://integratedmlai.com/wp-content/uploads/2020/08/1_JS-pjg67FWQ5oSjRBg5UAw-300x163.png 300w" sizes="(max-width: 366px) 100vw, 366px" /><figcaption>Figure 3.2 : PDF(x)</figcaption></figure></div>
+
+
+
+<h3><strong>3.2 : Standard Normal Distribution</strong></h3>
+
+
+
+<p>The scales used to measure variables do not necessarily represent the importance of the different variables in our studies and may end up creating a bias in our thinking compared to other variables. For example, one variable in our data may have very large numbers, and other variables may have much smaller numbers. We don&#8217;t want those larger numbers to unduly influence the training of models or to unduly influence our interpretation of the importance of one variable over others. Also, if the data is too widely spread out, outliers become more likely and can negatively affect model parameters during training. Thus, we frequently standardize data. We can standardize data in two steps:&nbsp; 1) subtract the mean from each of the values of the sample and then divide those differences by the standard deviation [(X &#8211; µ)/σ]. This process is called data normalization, and when we do this we transform a&nbsp; normal distribution into what we call a <strong><em>standard normal distribution.</em></strong></p>
+
+
+
+<p>After performing the above mathematical standardization operations, the <em>standard </em>normal distribution will have µ = 0 and σ = 1. In summary, we can transform all the observations of any normal random variable <em>X</em> with mean μ and variance <em>σ</em> to a new set of observations of another normal random variable <em>Z</em> with µ = 0 and σ = 1. The PDF of the standard normal distribution is given by equation 3.4.</p>
+
+
+
+<span class="wp-katex-eq katex-display" data-display="true">\tag*{Equation 3.4} f(z)=\frac{1}{2\pi}exp(\frac{-z^2}{2}) </span>
+
+
+
+<p>What is an example use-case where we&#8217;d want to use a <strong><em>standard </em></strong>normal distribution? Consider again the heights of 1<sup>st</sup> grade students. Suppose that you&#8217;ve expanded the scope of your study. Perhaps now, due to the breadth of source data, the data is more widely spread out, and / or the data may be measured in different scales (i.e. centimetres or inches). We would want to normalize such data.</p>
+
+
+
+<p>We can find the PDF of a <strong><em>standard </em></strong>normal distribution using basic code by simply substituting the values of the mean and the standard deviation to 0 and 1, respectively, in the first block of code.</p>
+
+
+
+<p>Also, since <strong>norm.pdf()</strong> returns a PDF value, we can use this function to plot the <strong><em>standard </em></strong>normal distribution function with a mean = 0 and a standard deviation = 1, respectively. We graph this standard normal distribution using SciPy, NumPy and Matplotlib. We use the domain of −4 &lt; 𝑥 &lt; 4 for visualization purposes (4 standard deviations away from the mean on each side) to ensure that both tails become close to 0 in probability. With the values of 𝜇 = 0 and 𝜎 = 1, the code block below produces the plot below the code block.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.5</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+import scipy
+import numpy as np
+import matplotlib.pyplot as plt 
+from scipy.stats import norm
+
+X = np.arange(-4, 4, 0.001)  # X is an array of x's
+Y = norm.pdf(X, loc=0, scale=1)  # Y is an array of probabilities
+
+plt.title('Graph of Standard Normal Dist, mu=0 , sigma=1')
+plt.xlabel('X-values')
+plt.ylabel('PDF value of Std Normal Dist')
+plt.plot(X, Y)
+plt.show()
+</pre>
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="395" height="278" src="https://integratedmlai.com/wp-content/uploads/2020/08/download-1-1.png" alt="" class="wp-image-1961" srcset="https://integratedmlai.com/wp-content/uploads/2020/08/download-1-1.png 395w, https://integratedmlai.com/wp-content/uploads/2020/08/download-1-1-300x211.png 300w" sizes="(max-width: 395px) 100vw, 395px" /><figcaption>Figure 3.2 : Plotted Standard Normal Distribution</figcaption></figure></div>
+
+
+
+<h3>3<strong>.3 : Cumulative Distribution Function (CDF)</strong></h3>
+
+
+
+<blockquote class="wp-block-quote"><p>The&nbsp;cumulative distribution function,&nbsp;CDF, or&nbsp;cumulant&nbsp;is a function derived from the&nbsp;probability density function&nbsp;for a continuous random variable. It gives the probability of finding the random variable at a value less than or equal to a given cutoff, ie, P(X ≤ x).  </p><cite><a href="https://brilliant.org/wiki/continuous-random-variables-cumulative/" data-type="URL" data-id="https://brilliant.org/wiki/continuous-random-variables-cumulative/" target="_blank" rel="noreferrer noopener">BRILLIANT</a></cite></blockquote>
+
+
+
+<p>Let&#8217;s use an example to help us understand the concepts of the cumulative distribution function (CDF). IQ scores are known to be normally distributed (check out <a rel="noreferrer noopener" href="https://study.com/academy/answer/iq-test-scores-are-normally-distributed-with-a-mean-of-100-and-a-standard-deviation-of-15-find-the-x-score-that-corresponds-to-a-z-score-of-1-645.html" target="_blank">this example</a>). Some people might want to know what their IQ score currently is. Someone might suspect that their current score is  ≤ 120. If we want to know the probability of this score, we can make use of the CDF. So, the probability of our IQ (which is the random variable X) being less than or equal to 120 (i.e. P(X ≤ 120) can be determined using the CDF. </p>
+
+
+
+<p>The CDF of the standard normal distribution, usually denoted by the letter Φ, is given by: </p>
+
+
+
+<span class="wp-katex-eq katex-display" data-display="true">\tag*{Equation 2.5} CDF=\Phi(X)=P(X \leq x)=\int_{-\infty}^x \frac{1}{\sqrt{2\pi}}exp(\frac{-x^2}{2}) \cdotp dx </span>
+
+
+
+<p>We can build the CDF function from scratch using basic Python functions. It is first necessary to understand the procedure used to perform the integration required for a CDF. The CDF value corresponds to the sum of the area under a normal distribution curve (integration). So, we divide the whole area under the curve into small panels of a fixed width, and we add up all those individual panels to get the total area under the curve. The smaller the width of the panel, the more accurate the integration will be. We will use a panel width of 0.0001.</p>
+
+
+
+<p>We use the PDF function to calculate the height of each panel over the range of values needed for our integration calculation. We multiply each height by our constant width to calculate each panel area. We add all those panel areas together. These combined mathematical steps constitute the CDF. The code block below accomplishes these mathematical steps.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.6</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+&quot;&quot;&quot; CDF of Normal Distribution without Numpy or Scipy &quot;&quot;&quot;
+import numpy as np  # only to get value of pi
+
+'''Cumulative Distribution Function (CDF)'''
+def CDF(mean=0, std_dev=1, x_left=-4, x_right=4, width=0.0001):
+    CDF = 0
+
+    ''' Call PDF for each value of x_left to x_right '''
+    # calculate number of panels (+ 1 includes x_right)
+    the_range = int((x_right - x_left) / width) + 1
+    for i in range(the_range):
+        x = x_left + i * width  # current x value
+        y = PDF(x, mean, std_dev)  # probability of this panel
+        panel = y * width  # this panel area under PDF curve
+        CDF += panel  # sum panel areas = CDF
+      
+    return CDF
+</pre>
+
+
+<p>With the CDF defined as a function in python, we can now use it. We know that the total area under any PDF curve is 1 (this point will be discussed in more detail in a later section), which means the CDF across the whole range should be 1. Using 4 standard deviations away from each side of the mean adequately constitutes the whole range. Also, if we integrate starting from 4 standard deviations to the left all the way to the mean, we should calculate an area of 0.5. And, if we integrate from the mean all the way to 4 standard deviations to the right, we should also calculate 0.5. Let&#8217;s do these calculations for the 1<sup>st</sup> graders&#8217; heights, and for the IQ scores.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.7</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+text_1st = '1st Graders heights'
+text_iqs = 'IQ scores'
+values = [
+    (text_iqs, 100, 15, 40, 160),
+    (text_iqs, 100, 15, 40, 100),
+    (text_iqs, 100, 15, 100, 160),
+    (text_1st, 37, 2, 29, 45),
+    (text_1st, 37, 2, 29, 37),
+    (text_1st, 37, 2, 37, 45)]
+
+for t in values:
+    text = t[0]
+    mean = t[1]
+    std = t[2]
+    lt = t[3]
+    rt = t[4]
+    cd_out = round(CDF(mean=mean, std_dev=std, 
+                       x_left=lt, x_right=rt), 2)
+    print(f'Probability of {text} being {lt} ≤ x ≤ {rt} is {cd_out}')
+</pre>
+
+
+<p>Above, we have used the CDF function repeatedly. The output from the above code block is shown in the below output block.</p>
+
+
+<pre class="brush: plain; title: ; notranslate" title="">
+Probability of IQ scores being 40 ≤ x ≤ 160 is 1.0
+Probability of IQ scores being 40 ≤ x ≤ 100 is 0.5
+Probability of IQ scores being 100 ≤ x ≤ 160 is 0.5
+Probability of 1st Graders heights being 29 ≤ x ≤ 45 is 1.0
+Probability of 1st Graders heights being 29 ≤ x ≤ 37 is 0.5
+Probability of 1st Graders heights being 37 ≤ x ≤ 45 is 0.5
+</pre>
+
+
+<p>Now we can be confident that our &#8220;from scratch&#8221; PDF and CDF work, and that we understand the principles much more deeply. Let&#8217;s make sure we also know how to use the provided python modules such as <strong>norm.pfd()</strong>, and let&#8217;s also add some functionality that provides greater visualization (<em>something that is always important for data scientists</em>). The <strong>fill_between(X, y1, y2=0)</strong> method in matplotlib is used to fill the region between our left and right endpoints. <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.fill_between.html">Click here</a> for a detailed overview of the function. (Here, y1 is the normal curve and y2=0 locates the X-axis). Here, we will find P(X <em>≤</em> 37) using the function <strong>norm.cdf(x, loc, scale)</strong>.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 3.8</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+import scipy
+import numpy as np
+import matplotlib.pyplot as plt 
+from scipy.stats import norm
+
+X = np.arange(29, 46, 0.0001)
+Y = norm.pdf(X, loc=37, scale=2)
+plt.plot(X, Y)
+plt.title(&quot;Probability Distribution Function&quot;)
+plt.xlabel('X-Values')
+plt.ylabel('PDF(x)')
+
+# for fill_between
+pX = np.arange(29, 37, 0.0001)  # X values for fill
+pY = norm.pdf(pX,loc=37, scale=2)  # Y values for fill
+plt.fill_between(pX, pY, alpha=0.5, color='c')  # Fill method call
+
+# for text
+prob = round(norm.cdf(x=37, loc=37, scale=2),2)
+plt.text(34.5, 0.03, prob, fontsize=20)  # Add text at position
+plt.show()
+</pre>
+
+
+<p>From the above code block, we get the following PDF with the integrated CDF value shown as the shaded area.</p>
+
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter size-large"><img loading="lazy" width="398" height="278" src="https://integratedmlai.com/wp-content/uploads/2020/08/CDF_Area_of_PDF.png" alt="" class="wp-image-2030" srcset="https://integratedmlai.com/wp-content/uploads/2020/08/CDF_Area_of_PDF.png 398w, https://integratedmlai.com/wp-content/uploads/2020/08/CDF_Area_of_PDF-300x210.png 300w" sizes="(max-width: 398px) 100vw, 398px" /><figcaption>Figure 3.4 : Cumulative Distribution Plot</figcaption></figure></div>
+
+
+
+<p>There are some important properties of Φ&nbsp;that should now be clear from all that was said above and should be kept in mind. For all x ∈ <strong>ℝ</strong> (<em>the fancy way that we say for all x values that are real numbers</em>), it is true that:</p>
+
+
+
+<ol><li><span class="wp-katex-eq katex-display" data-display="true"> \Phi (0)=\frac{1}{2}</span></li><li><span class="wp-katex-eq katex-display" data-display="true">\Phi (-x)=1 - \Phi (x)</span></li><li><span class="wp-katex-eq katex-display" data-display="true">\lim\limits_{x \to +\infty} \Phi (x)=1</span></li><li><span class="wp-katex-eq katex-display" data-display="true">\lim\limits_{x \to -\infty} \Phi (x)=0</span></li></ol>
+
+
+
+<p>Let&#8217;s go over those individually remembering that the CDF is an integration from left to right of the PDF. Let&#8217;s start with properties 3 and 4. We shifted the mean to zero when we subtracted the mean of X from all values of X and we divided all those new values by the standard deviation. Therefore, when we <strong><em>integrate </em></strong>(<em>we love that word on this blog</em>) from -∞ to +∞, the result will be 1 (i.e. point 3 above). If we integrate from some very large negative number, the CDF will be 0 (i.e. point 4 above). If we only integrate up to 0 (property 1 above) instead of all the way to +∞, the result will be 1/2 (i.e. point 1 above). Consequently, looking at property 2 above, integrating up to any value of x must equal 1 &#8211; <em>CDF</em> of the opposite sign of that x.</p>
+
+
+
+<p>Also, since Φ does not have a closed-form solution (<em>meaning we can&#8217;t just calculate it directly, we must integrate programmatically to get the solution</em>), it is sometimes useful to use upper and/or lower bounds. Since an infinite integral will not be considered as a closed-form, we need to define an upper and lower bound for the integration to get a definite CDF value. Refer to the solution of Problem 7 in <a href="https://www.probabilitycourse.com/chapter4/4_2_6_solved4_2.php">this link</a> to understand how the upper and lower bounds are defined. Please note that our above &#8220;from scratch code&#8221; does handle integrating from a specific left most value to a specific right most value.</p>
+
+
+
+<h2><strong>4. Calculating Probabilities Using a Normal Distribution with Python Modules</strong></h2>
+
+
+
+<p>Let’s now work through some examples of how we would find the probability of an event with respect to a constraint. For instance, we might want to estimate the probability of&nbsp; &lt; 700 mm of rain falling in the next 3 days. This can be written as P(x &lt; 700), where x is a random variable from a data set X that shows the amount of rain in a particular area for a 3 month period each year. We can find this value by using the CDF. Let’s implement this in Python using the examples in the following sections.</p>
+
+
+
+<h3><strong>4.1 : To find P(X &lt; x)</strong></h3>
+
+
+
+<p>Given a population with mean 3 and standard deviation 2, we can find the probability P(X &lt; 5) using the <strong>norm.cdf()</strong> function from SciPy. Here, in the function, the location (loc) keyword specifies the mean and the scale keyword specifies the standard deviation and x specifies the value we wish to integrate up to.</p>
+
+
+
+<p>Continuing from the <strong>Calculating Probability using Normal Distributions in Python</strong> colab notebook above, the next block is </p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 4.1</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+from scipy.stats import norm
+
+less_than_5=norm.cdf(x=5, loc=3, scale=2)
+print(less_than_5)
+</pre>
+
+
+<p>The output from the above cell is </p>
+
+
+
+<pre class="wp-block-code"><code>0.8413447460685429</code></pre>
+
+
+
+<p>The value 84.13% is the probability that the random variable is less than 5. In order to plot this on a normal curve, we follow a three-step process &#8211; plotting the distribution curve, filling the probability region in the curve, and labelling the probability value. We can achieve this using the following code:</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 4.2</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+from matplotlib import pyplot as plt
+import numpy as np
+fig, ax = plt.subplots()
+
+# for distribution curve
+x= np.arange(-4, 10, 0.001)
+ax.plot(x, norm.pdf(x, loc=3, scale=2))
+ax.set_title(&quot;Normal Dist. with mean=3, std_dv=2&quot;)
+ax.set_xlabel('X-Values')
+ax.set_ylabel('PDF(X)')
+
+# for fill_between
+px=np.arange(-4,5, 0.01)
+ax.set_ylim(0, 0.25)
+ax.fill_between(px, norm.pdf(px, loc=3, scale=2), 
+                alpha=0.5, color='r')
+
+# for text
+ax.text(-0.5, 0.02, round(less_than_5, 2), fontsize=20)
+plt.show()
+</pre>
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="395" height="278" src="https://integratedmlai.com/wp-content/uploads/2020/08/download-9.png" alt="" class="wp-image-1979" srcset="https://integratedmlai.com/wp-content/uploads/2020/08/download-9.png 395w, https://integratedmlai.com/wp-content/uploads/2020/08/download-9-300x211.png 300w" sizes="(max-width: 395px) 100vw, 395px" /><figcaption>Figure 4.1 : P (X &lt; 5)</figcaption></figure></div>
+
+
+
+<h3><strong>4.2 : To find P (x1 &lt; X &lt; x2)</strong></h3>
+
+
+
+<p>To find the probability of an interval between two variables, you need to subtract one CDF calculation from another one when using <strong>norm.cdf</strong>. Let&#8217;s find 𝑃(0.2 &lt; 𝑋 &lt; 5) with a mean of 1, and a standard deviation of 2, (i.e. X ~ N (1, 2)).</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 4.3</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+norm(1, 2).cdf(5) - norm(1,2).cdf(0.2)
+</pre>
+
+
+<p>This output for the above plot shows that there is a 63.2% probability that the random variable will lie between the values 0.2 and 5. To plot this, we can use the following code:</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 4.4</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+fig, ax = plt.subplots()
+
+# for distribution curve
+x= np.arange(-6,8,0.001)
+ax.plot(x, norm.pdf(x,loc=1,scale=2))
+ax.set_title(&quot;Normal Dist. with mean=1, std_dv=2&quot;)
+ax.set_xlabel('X-Values')
+ax.set_ylabel('PDF(X)')
+ax.grid(True)
+
+px=np.arange(0.2,5,0.01)
+ax.set_ylim(0,0.25)
+ax.fill_between(px,norm.pdf(px,loc=1,scale=2),alpha=0.5, color='c')
+
+pro=norm(1,2).cdf(5) - norm(1,2).cdf(0.2)
+ax.text(0.2,0.02,round(pro,2), fontsize=20)
+plt.show()
+</pre>
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter"><img src="https://lh5.googleusercontent.com/JSGUyawMGz49UneUaXVJ1t-rXAcjwtuCq652z6qgJkah8E9_hEU3f6vwM-1AzX_2vA1OwQRy-eTTB1aL15Vxcv6hUIDy6nV-hBb-mL9rzqhZt7qst73CLU-fjxh5rlmcADn4A7Dt" alt=""/><figcaption>Figure 4.2 : P (0.2 &lt; X &lt; 5)</figcaption></figure></div>
+
+
+
+<p>It’s worth noting that the code we wrote from scratch in python without numpy or scipy was able to perform a CDF integration between two values of a variable with one call.&nbsp;</p>
+
+
+
+<h3><strong>4.3 : To find P(X &gt; x)</strong></h3>
+
+
+
+<p>To find the probability of P (X &gt; x), we can use <strong>norm.sf</strong>, which is called the survival function, and it returns the same value as 1 &#8211; <strong>norm.cdf</strong>. For example, consider that we have a population with mean = 4 and standard deviation = 2. We need to find P (X &gt; 3). We can use the following code.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 4.5</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+greater_than_3 = norm.sf(x=3, loc=4, scale=2)
+greater_than_3
+</pre>
+
+
+<p>The output of that block is 0.6914624612740131.</p>
+
+
+
+<p>This probability can be plotted on a graph using the following code.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 4.6</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+fig, ax = plt.subplots()
+x= np.arange(-4, 10, 0.001)
+ax.plot(x, norm.pdf(x, loc=4, scale=2))
+ax.set_title(&quot;Normal Dist. with mean=4, std_dv=2&quot;)
+ax.set_xlabel('X-Values')
+ax.set_ylabel('PDF(X)')
+ax.grid(True)
+
+px=np.arange(3, 10, 0.01)
+ax.set_ylim(0, 0.25)
+ax.fill_between(px, norm.pdf(px, loc=4, scale=2), 
+                alpha=0.5, color='m')
+
+ax.text(4, 0.02, &quot;P(X&gt;3)\n%.2f&quot; %(greater_than_3), 
+        fontsize=18)
+plt.show()
+</pre>
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter size-large"><img loading="lazy" width="392" height="278" src="https://integratedmlai.com/wp-content/uploads/2020/09/image.png" alt="" class="wp-image-2103" srcset="https://integratedmlai.com/wp-content/uploads/2020/09/image.png 392w, https://integratedmlai.com/wp-content/uploads/2020/09/image-300x213.png 300w" sizes="(max-width: 392px) 100vw, 392px" /><figcaption>Figure 4.3 : P (X &gt; 3)</figcaption></figure></div>
+
+
+
+<p>We explained the symmetric property of CDFs above. So, P(X &gt; 3) can again be re-written as <strong>1 &#8211; P(X &lt; 3)</strong>, i.e. <strong><em>P(X &gt; 3) = 1 &#8211; P(X &lt; 3)</em></strong>. We can visualize this using the following code.</p>
+
+
+
+<p class="has-text-align-center"><strong>Code Block 4.7</strong></p>
+
+
+<pre class="brush: python; title: ; notranslate" title="">
+gr4 = norm.cdf(x=3, loc=4, scale=2)
+gr14 = 1-gr4
+fig, ax = plt.subplots()
+x= np.arange(-4, 10, 0.001)
+ax.plot(x, norm.pdf(x, loc=4, scale=2))
+ax.set_title(&quot;Normal Dist. with mean=4, std_dv=2&quot;)
+ax.set_xlabel('X-values')
+ax.set_ylabel('PDF(X)')
+
+
+px=np.arange(3, 10, 0.01)
+ax.set_ylim(0, 0.25)
+ax.fill_between(px,norm.pdf(px, loc=4, scale=2), 
+                alpha=0.5, color='r')
+px1=np.arange(-4, 3, 0.01)
+ax.fill_between(px1,norm.pdf(px1, loc=4, scale=2),
+                alpha=0.5, color='c')
+ax.text(4.5, 0.02, round(gr14, 2), fontsize=20)
+ax.text(1, 0.02, round(gr4, 2), fontsize=20)
+plt.show()
+</pre>
+
+
+<div class="wp-block-image is-style-default"><figure class="aligncenter size-large"><img loading="lazy" width="392" height="278" src="https://integratedmlai.com/wp-content/uploads/2020/09/image-1.png" alt="" class="wp-image-2104" srcset="https://integratedmlai.com/wp-content/uploads/2020/09/image-1.png 392w, https://integratedmlai.com/wp-content/uploads/2020/09/image-1-300x213.png 300w" sizes="(max-width: 392px) 100vw, 392px" /><figcaption>Figure 4.4 : P (X &gt; 3) = 1 &#8211; P (X &lt; 3)</figcaption></figure></div>
+
+
+
+<h2><strong>5. References</strong></h2>
+
+
+
+<ol><li><a href="http://onlinestatbook.com/2/normal_distribution/history_normal.html">http://onlinestatbook.com/2/normal_distribution/history_normal.html</a></li><li><a href="https://towardsdatascience.com/exploring-normal-distribution-with-jupyter-notebook-3645ec2d83f8">https://towardsdatascience.com/exploring-normal-distribution-with-jupyter-notebook-3645ec2d83f8</a></li></ol>
+
+
+
+<h1>Closing</h1>
+
+
+
+<p>As we discussed above, while the normal distribution is common to measured data, it’s not the only type of distribution. There are tests that we can perform to measure the appropriateness of using the normal distribution. If the data fails the test for a normal distribution, there are other distributions that we can choose. We will cover these tests for normality and other distributions in upcoming posts. </p>
+
+
+
+<p>Until next time …&nbsp;</p>
+</div>
+		<div class="section section-blog-info">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="entry-categories">Categories:						<span class="label label-primary"><a href="https://integratedmlai.com/category/statistics/basic/">Basic</a></span><span class="label label-primary"><a href="https://integratedmlai.com/category/statistics/">Statistics</a></span>					</div>
+					<div class="entry-tags">Tags: <span class="entry-tag"><a href="https://integratedmlai.com/tag/basics/" rel="tag">basics</a></span><span class="entry-tag"><a href="https://integratedmlai.com/tag/datascience/" rel="tag">datascience</a></span><span class="entry-tag"><a href="https://integratedmlai.com/tag/normal-distribution/" rel="tag">normal distribution</a></span><span class="entry-tag"><a href="https://integratedmlai.com/tag/probability/" rel="tag">probability</a></span><span class="entry-tag"><a href="https://integratedmlai.com/tag/statistics/" rel="tag">statistics</a></span></div>				</div>
+				
+        <div class="col-md-6">
+            <div class="entry-social">
+                <a target="_blank" rel="tooltip"
+                   data-original-title="Share on Facebook"
+                   class="btn btn-just-icon btn-round btn-facebook"
+                   href="https://www.facebook.com/sharer.php?u=https://integratedmlai.com/normal-distribution-an-introductory-guide-to-pdf-and-cdf/">
+                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="17"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                </a>
+                
+                <a target="_blank" rel="tooltip"
+                   data-original-title="Share on Twitter"
+                   class="btn btn-just-icon btn-round btn-twitter"
+                   href="http://twitter.com/share?url=https://integratedmlai.com/normal-distribution-an-introductory-guide-to-pdf-and-cdf/&#038;text=Normal%20Distribution%3A%20An%20Introductory%20Guide%20to%20PDF%20and%20CDF">
+                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+                </a>
+                
+                <a rel="tooltip"
+                   data-original-title=" Share on Email"
+                   class="btn btn-just-icon btn-round"
+                   href="mailto:?subject=Normal%20Distribution:%20An%20Introductory%20Guide%20to%20PDF%20and%20CDF&#038;body=https://integratedmlai.com/normal-distribution-an-introductory-guide-to-pdf-and-cdf/">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
+               </a>
+            </div>
+		</div>			</div>
+			<hr>
+			
+<div id="comments" class="section section-comments">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="media-area">
+				<h3 class="hestia-title text-center">
+					29 Comments				</h3>
+						<div class="comment even thread-even depth-1 parent media"				id="comment-50">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/bb86e3bcdcc8101a5526ba3f192d155e?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/bb86e3bcdcc8101a5526ba3f192d155e?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Jithin R J					<small>
+						&#183; September 1, 2020 at 6:50 am					</small>
+				</h4>
+				<p>Really, informative<br />
+Thanks</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor odd alt depth-2 media"				id="comment-51">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 1, 2020 at 11:40 am					</small>
+				</h4>
+				<p>Thank you Jithin RJ. I&#8217;m glad that you found it helpful.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment even thread-odd thread-alt depth-1 parent media"				id="comment-52">
+							<a class="pull-left" href="https://www.dataoilst.com ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/bd418080f5b0021353325c062a01b9db?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/bd418080f5b0021353325c062a01b9db?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					<a href='https://www.dataoilst.com' rel='external nofollow ugc' class='url'>Krishna</a>					<small>
+						&#183; September 1, 2020 at 3:31 pm					</small>
+				</h4>
+				<p>Wow, this is awesome and deep! Learned a lot! </p>
+<p>Looking forward to another topic🤩</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor odd alt depth-2 media"				id="comment-53">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 1, 2020 at 4:32 pm					</small>
+				</h4>
+				<p>Thank you very much Krishna. Will be posting the next one soon. 🙂</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment even thread-even depth-1 parent media"				id="comment-54">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/71a60de7e88691673c72240df3be8fb9?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/71a60de7e88691673c72240df3be8fb9?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Sathya T					<small>
+						&#183; September 1, 2020 at 5:26 pm					</small>
+				</h4>
+				<p>Great content. Very Useful.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor odd alt depth-2 media"				id="comment-55">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 1, 2020 at 6:12 pm					</small>
+				</h4>
+				<p>Thank you, Sathya.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment even thread-odd thread-alt depth-1 parent media"				id="comment-56">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/b4187b2e1e1ccfacf759fa082346197e?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b4187b2e1e1ccfacf759fa082346197e?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Hardik					<small>
+						&#183; September 2, 2020 at 4:43 am					</small>
+				</h4>
+				<p>Really informative.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor odd alt depth-2 media"				id="comment-57">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 2, 2020 at 4:56 am					</small>
+				</h4>
+				<p>Thank you, Hardik. 🙂</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment even thread-even depth-1 parent media"				id="comment-58">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/42a668700f2264e45d581f6db4d32f34?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/42a668700f2264e45d581f6db4d32f34?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Pallavi					<small>
+						&#183; September 2, 2020 at 7:04 am					</small>
+				</h4>
+				<p>Really very helpful.<br />
+I was really looking forward for something that gives me a clear understanding of how to work with normal distribution the most basic but one of the most important concepts.</p>
+<p>Thanks Teena</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor odd alt depth-2 media"				id="comment-59">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 2, 2020 at 12:17 pm					</small>
+				</h4>
+				<p>I really appreciate your review, Pallavi. Thank you. Will be posting more on it very soon.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment even thread-odd thread-alt depth-1 parent media"				id="comment-60">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/1cf789ca9f9f202d4406538462654b08?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/1cf789ca9f9f202d4406538462654b08?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Tanya Joe					<small>
+						&#183; September 2, 2020 at 1:11 pm					</small>
+				</h4>
+				<p>Great work&#8230;found it really useful !!</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor odd alt depth-2 media"				id="comment-61">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 2, 2020 at 2:59 pm					</small>
+				</h4>
+				<p>Thank you, Tanya. Glad that you found it helpful.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+		<div class="comment even depth-2 media"				id="comment-69">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/937ef9d98e33a65c6d4318d5cb0f70e4?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/937ef9d98e33a65c6d4318d5cb0f70e4?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Shreya					<small>
+						&#183; September 3, 2020 at 8:36 am					</small>
+				</h4>
+				<p>This is such a well detailed explanation of Normal Distribution. From the history to even codes this is amazing.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-even depth-1 parent media"				id="comment-62">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/2d5e177df96b87110a5db7d7b90ffcde?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/2d5e177df96b87110a5db7d7b90ffcde?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Neena Francis					<small>
+						&#183; September 2, 2020 at 3:23 pm					</small>
+				</h4>
+				<p>This was a really informative post. Very much simplified. Waiting for the next one to release. 😄</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor even depth-2 media"				id="comment-63">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 2, 2020 at 3:25 pm					</small>
+				</h4>
+				<p>Thank you, Neena. Highly appreciate it.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-odd thread-alt depth-1 parent media"				id="comment-64">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/80f8ed1a2ea6bbafde03c1adad477e17?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/80f8ed1a2ea6bbafde03c1adad477e17?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Amala Justin					<small>
+						&#183; September 2, 2020 at 3:39 pm					</small>
+				</h4>
+				<p>Very useful&#8230;.Thank you Teena😊.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor even depth-2 media"				id="comment-65">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 2, 2020 at 5:36 pm					</small>
+				</h4>
+				<p>Glad it helped!!! 🙂</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-even depth-1 parent media"				id="comment-66">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/b9fd65e4afe8524c58654cba88d5f64a?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b9fd65e4afe8524c58654cba88d5f64a?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Kimberly Herrington					<small>
+						&#183; September 2, 2020 at 5:47 pm					</small>
+				</h4>
+				<p>Looks Great!</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-admin even depth-2 media"				id="comment-67">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo avatar-default' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					admin					<small>
+						&#183; September 2, 2020 at 11:08 pm					</small>
+				</h4>
+				<p>Thanks Kim from Teena and Thom</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-odd thread-alt depth-1 parent media"				id="comment-68">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/937ef9d98e33a65c6d4318d5cb0f70e4?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/937ef9d98e33a65c6d4318d5cb0f70e4?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Shreya					<small>
+						&#183; September 3, 2020 at 8:35 am					</small>
+				</h4>
+				<p>This is such a well detailed explanation of Normal Distribution. From the history to even codes this is amazing.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor even depth-2 media"				id="comment-72">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 3, 2020 at 6:38 pm					</small>
+				</h4>
+				<p>I&#8217;m glad you liked it. Stay tuned for more. 🙂</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-even depth-1 parent media"				id="comment-70">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/a5537d74eb847ee70c84d52a1643108d?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/a5537d74eb847ee70c84d52a1643108d?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Dr. Ursala Paul					<small>
+						&#183; September 3, 2020 at 8:36 am					</small>
+				</h4>
+				<p>Good work Teena 👏👏</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor even depth-2 media"				id="comment-73">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 3, 2020 at 6:39 pm					</small>
+				</h4>
+				<p>Thank you very much Ursala Ma&#8217;am.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-odd thread-alt depth-1 parent media"				id="comment-71">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/445b301d76246e2fbf73c0a05a70c989?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/445b301d76246e2fbf73c0a05a70c989?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					DEEPAKASHWIN N					<small>
+						&#183; September 3, 2020 at 5:52 pm					</small>
+				</h4>
+				<p>It&#8217;s really a good work Teena. A good energy to make the study. All the best and keep doing further.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor even depth-2 media"				id="comment-74">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 3, 2020 at 6:40 pm					</small>
+				</h4>
+				<p>Thank you, Deepak. Will be posting more soon.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-even depth-1 parent media"				id="comment-75">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/720d6ccbf213967a66aed015a9ca3e60?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/720d6ccbf213967a66aed015a9ca3e60?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Giovanna Galleno					<small>
+						&#183; September 5, 2020 at 5:30 pm					</small>
+				</h4>
+				<p>An amazing explanation! You have done a very accurate work, Teena! Congratulations! Looking forward to your next post!</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor even depth-2 media"				id="comment-76">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 5, 2020 at 6:25 pm					</small>
+				</h4>
+				<p>Thank you very much Giovanna. I&#8217;m glad you found it good. Will post more on it soon.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<div class="comment odd alt thread-odd thread-alt depth-1 parent media"				id="comment-79">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/8b1ec43ca7cd6254a92efb7015ddf9de?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8b1ec43ca7cd6254a92efb7015ddf9de?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Reshma G Krishnan					<small>
+						&#183; September 17, 2020 at 12:50 pm					</small>
+				</h4>
+				<p>Nice work Teena . I found this really informative and useful. I am looking forward to more of your works .😊</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		<ul class="children">
+		<div class="comment byuser comment-author-teenamary bypostauthor even depth-2 media"				id="comment-80">
+							<a class="pull-left" href=" ">
+					<div class="comment-author avatar vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/13ef4614eff7bf18e7cc2ea8932545d7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>					</div>
+				</a>
+						<div class="media-body">
+				<h4 class="media-heading">
+					Teena Mary					<small>
+						&#183; September 17, 2020 at 5:19 pm					</small>
+				</h4>
+				<p>Definitely Reshma, I&#8217;ll be writing more on it. I&#8217;m glad you liked it. Stay tuned.</p>
+				<div class="media-footer">
+									</div>
+			</div>
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</div>
+			<div class="media-body">
+																			<h4 class="no-comments hestia-title text-center">Comments are closed.</h4>
+												</div>
+		</div>
+	</div>
+</div>
+		</div>
+		</div>	<div class="col-md-3 blog-sidebar-wrapper col-md-offset-1">
+		<aside id="secondary" class="blog-sidebar" role="complementary">
+						<div id="categories-4" class="widget widget_categories"><h5>Categories</h5><form action="https://integratedmlai.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="72">Book Review</option>
+	<option class="level-0" value="11">Data Science Tools</option>
+	<option class="level-1" value="12">&nbsp;&nbsp;&nbsp;Workflow Tools</option>
+	<option class="level-0" value="2">Math Tools</option>
+	<option class="level-1" value="3">&nbsp;&nbsp;&nbsp;Theory to Code</option>
+	<option class="level-0" value="82">Mentoring</option>
+	<option class="level-0" value="91">Statistics</option>
+	<option class="level-1" value="92">&nbsp;&nbsp;&nbsp;Basic</option>
+	<option class="level-0" value="22">The Basics</option>
+	<option class="level-1" value="26">&nbsp;&nbsp;&nbsp;Tools</option>
+	<option class="level-0" value="73">Visualization</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</div><div id="archives-4" class="widget widget_archive"><h5>Archives</h5>		<label class="screen-reader-text" for="archives-dropdown-4">Archives</label>
+		<select id="archives-dropdown-4" name="archive-dropdown">
+			
+			<option value="">Select Month</option>
+				<option value='https://integratedmlai.com/2020/12/'> December 2020 </option>
+	<option value='https://integratedmlai.com/2020/09/'> September 2020 </option>
+	<option value='https://integratedmlai.com/2020/08/'> August 2020 </option>
+	<option value='https://integratedmlai.com/2020/07/'> July 2020 </option>
+	<option value='https://integratedmlai.com/2020/06/'> June 2020 </option>
+	<option value='https://integratedmlai.com/2020/04/'> April 2020 </option>
+	<option value='https://integratedmlai.com/2020/02/'> February 2020 </option>
+	<option value='https://integratedmlai.com/2019/02/'> February 2019 </option>
+	<option value='https://integratedmlai.com/2018/12/'> December 2018 </option>
+	<option value='https://integratedmlai.com/2018/11/'> November 2018 </option>
+
+		</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "archives-dropdown-4" );
+	function onSelectChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value !== '' ) {
+			document.location.href = this.options[ this.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onSelectChange;
+})();
+/* ]]> */
+</script>
+			</div><div id="calendar-3" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar" class="wp-calendar-table">
+	<caption>June 2021</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Sunday">S</th>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td colspan="2" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+	</tr>
+	<tr>
+		<td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+	</tr>
+	<tr>
+		<td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+	</tr>
+	<tr>
+		<td>20</td><td>21</td><td id="today">22</td><td>23</td><td>24</td><td>25</td><td>26</td>
+	</tr>
+	<tr>
+		<td>27</td><td>28</td><td>29</td><td>30</td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table><nav aria-label="Previous and next months" class="wp-calendar-nav">
+		<span class="wp-calendar-nav-prev"><a href="https://integratedmlai.com/2020/12/">&laquo; Dec</a></span>
+		<span class="pad">&nbsp;</span>
+		<span class="wp-calendar-nav-next">&nbsp;</span>
+	</nav></div></div>					</aside><!-- .sidebar .widget-area -->
+	</div>
+			</div>
+</article>
+
+		</div>
+	</div>
+</div>
+
+<div class="footer-wrapper">
+						<footer class="footer footer-black footer-big">
+						<div class="container">
+																<div class="hestia-bottom-footer-content"><ul class="footer-menu pull-left"><li class="page_item page-item-4"><a href="https://integratedmlai.com/contact-us/">Contact Us</a></li>
+<li class="page_item page-item-2"><a href="https://integratedmlai.com/sample-page/">Sample Page</a></li>
+</ul>
+					<div class="copyright pull-right">
+				Hestia | Developed by <a href="https://themeisle.com" rel="nofollow">ThemeIsle</a>			</div>
+			</div>			</div>
+					</footer>
+				</div>
+	</div>
+<script type='text/javascript' src='https://integratedmlai.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b' id='syntaxhighlighter-core-js'></script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js?ver=3.0.9b' id='syntaxhighlighter-brush-python-js'></script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js?ver=3.0.9b' id='syntaxhighlighter-brush-plain-js'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://integratedmlai.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://integratedmlai.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = true;
+	SyntaxHighlighter.defaults['smart-tabs'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<link rel='stylesheet' id='katex-css'  href='https://integratedmlai.com/wp-content/plugins/wp-katex/assets/katex.min.css?ver=0.11.0' type='text/css' media='all' />
+<script type='text/javascript' src='https://integratedmlai.com/wp-includes/js/comment-reply.min.js?ver=5.7.2' id='comment-reply-js'></script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-content/themes/hestia/assets/bootstrap/js/bootstrap.min.js?ver=1.0.2' id='jquery-bootstrap-js'></script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1' id='jquery-ui-core-js'></script>
+<script type='text/javascript' id='hestia_scripts-js-extra'>
+/* <![CDATA[ */
+var requestpost = {"ajaxurl":"https:\/\/integratedmlai.com\/wp-admin\/admin-ajax.php","disable_autoslide":"","masonry":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-content/themes/hestia/assets/js/script.min.js?ver=3.0.8' id='hestia_scripts-js'></script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-includes/js/wp-embed.min.js?ver=5.7.2' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://integratedmlai.com/wp-content/plugins/wp-katex/assets/katex.min.js?ver=0.11.0' id='katex-js'></script>
+<script>!function(){"use strict";for(var e=document.querySelectorAll(".wp-katex-eq"),t=0;t<e.length;t++){var r=e[t],a=document.createElement("span");try{katex.render(r.textContent,a,{displayMode:"true"===r.getAttribute("data-display"),throwOnError:!1})}catch(n){a.style.color="red",a.textContent=n.message}r.parentNode.replaceChild(a,r)}}();</script></body>
+</html>
